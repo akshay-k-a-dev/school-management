@@ -1,0 +1,1 @@
+This folder contains API routers for the Campus Service Hub project. Each router is registered in `app.main` and grouped by feature (auth, complaints, events, bookings, announcements, admin dashboard).

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Events</h2>
+
+  <section class="card" id="createEventSection" style="display:none;">
+    <h3>Create event (admin)</h3>
+    <form id="eventForm">
+      <label>Title<input id="title" required></label>
+      <label>Date<input id="date" type="datetime-local" required></label>
+      <label>Venue<input id="venue" required></label>
+      <label>Capacity<input id="capacity" type="number" required></label>
+      <label>Description<textarea id="description"></textarea></label>
+      <button type="submit">Create</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h3>Available events</h3>
+    <ul id="eventsList"></ul>
+  </section>
+{% endblock %}

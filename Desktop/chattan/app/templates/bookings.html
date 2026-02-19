@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Room / Lab Booking</h2>
+  <section class="card">
+    <h3>Request booking</h3>
+    <form id="bookingForm">
+      <label>Room<input id="room_name" required></label>
+      <label>Date<input id="date" type="date" required></label>
+      <label>Start time<input id="start_time" type="time" required></label>
+      <label>End time<input id="end_time" type="time" required></label>
+      <button type="submit">Request</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h3>Your bookings</h3>
+    <ul id="bookingsList"></ul>
+  </section>
+
+  <!-- admin-only: all bookings -->
+  <section class="card" id="allBookingsSection" style="display:none;">
+    <h3>All bookings (admin)</h3>
+    <ul id="allBookingsList"></ul>
+  </section>
+{% endblock %}

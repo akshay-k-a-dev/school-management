@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Campus Service Hub</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container">
+        <a class="brand" href="/">Campus Service Hub</a>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/announcements">Announcements</a>
+          <a href="/events">Events</a>
+          <a href="/complaints">Complaints</a>
+          <a href="/bookings">Bookings</a>
+          <a id="profile-link" href="/profile" style="display:none;">Profile</a>
+          <a id="admin-link" href="/admin/dashboard" style="display:none;">Admin</a>
+        </nav>
+        <div class="auth">
+          <span id="user-info"></span>
+          <a id="login-link" href="/login">Login</a>
+          <a id="signup-link" href="/signup">Signup</a>
+          <a id="logout-link" href="#" style="display:none;">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container content" id="content">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="container footer">
+      <small>Campus Service Hub</small>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>

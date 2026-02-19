@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Profile</h2>
+  <section class="card">
+    <h3>Contact information</h3>
+    <form id="profileForm">
+      <label>Name<input id="p_name" required></label>
+      <label>Email<input id="p_email" type="email" required></label>
+      <label>Phone<input id="p_phone" type="tel"></label>
+      <button id="saveProfile" type="submit">Save</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h3>Change password</h3>
+    <form id="passwordForm">
+      <label>Current password<input id="old_password" type="password" required></label>
+      <label>New password<input id="new_password" type="password" required></label>
+      <button id="changePassword" type="submit">Change password</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h3>My events</h3>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div style="flex:1">
+        <strong>Upcoming</strong>
+        <ul id="profileUpcoming"></ul>
+      </div>
+      <div style="flex:1">
+        <strong>Past</strong>
+        <ul id="profilePast"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="profileAdminActions" style="display:none;">
+    <h3>Admin actions</h3>
+    <button id="profileExport" class="btn btn-ghost">Download report (PDF)</button>
+  </section>
+{% endblock %}

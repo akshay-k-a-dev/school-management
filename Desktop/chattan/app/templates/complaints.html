@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Complaints</h2>
+  <section class="card">
+    <h3>Submit a complaint</h3>
+    <form id="complaintForm">
+      <label>Title<input id="title" required></label>
+      <label>Category<input id="category" required></label>
+      <label>Description<textarea id="description" rows="4" required></textarea></label>
+      <label>Image<input id="image" type="file"></label>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h3>Your complaints</h3>
+    <ul id="complaintsList"></ul>
+  </section>
+
+  <!-- admin-only list -->
+  <section class="card" id="allComplaintsSection" style="display:none;">
+    <h3>All complaints (admin)</h3>
+    <ul id="allComplaintsList"></ul>
+  </section>
+{% endblock %}

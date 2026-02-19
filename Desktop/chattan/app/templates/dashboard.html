@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Admin Dashboard</h2>
+
+  <section class="card admin-credentials">
+    <div class="creds-left">
+      <strong>Admin account</strong>
+      <div class="creds-item"><code>admin@example.com</code> / <code>admin123</code></div>
+      <div class="muted">Click <em>Login as admin</em> to authenticate immediately.</div>
+    </div>
+    <div class="creds-actions">
+      <button id="copy-admin-creds" class="btn btn-ghost">Copy creds</button>
+      <button id="login-as-admin" class="btn">Login as admin</button>
+      <button id="export-report" class="btn btn-ghost">Export report (PDF)</button>
+    </div>
+  </section>
+
+  <section class="card stats">
+    <div class="stat-block"><strong id="usersCount">0</strong><div>Users</div></div>
+    <div class="stat-block"><strong id="complaintsCount">0</strong><div>Complaints</div></div>
+    <div class="stat-block"><strong id="eventsCount">0</strong><div>Events</div></div>
+    <div class="stat-block"><strong id="bookingsCount">0</strong><div>Bookings</div></div>
+  </section>
+
+  <section class="card">
+    <h3>Recent activity</h3>
+    <ul id="recentList" class="recent-list"></ul>
+  </section>
+{% endblock %}

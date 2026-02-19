@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="card">
+    <h1>Welcome to Campus Service Hub</h1>
+    <p>Access services for complaints, events, room bookings and announcements.</p>
+    <div class="form-row" style="margin-top:12px">
+      <div>
+        <strong>Announcements</strong>
+        <ul id="homeAnnouncements"></ul>
+      </div>
+      <div>
+        <strong>Upcoming events</strong>
+        <ul id="homeEvents"></ul>
+      </div>
+      <div>
+        <strong>Quick stats</strong>
+        <div id="homeStats" class="muted">Loading...</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Quick links</h3>
+    <ul>
+      <li><a href="/events">Events</a></li>
+      <li><a href="/complaints">Submit Complaint</a></li>
+      <li><a href="/bookings">Request Room Booking</a></li>
+      <li><a href="/announcements">Announcements</a></li>
+    </ul>
+  </section>
+{% endblock %}

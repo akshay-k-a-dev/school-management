@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Announcements</h2>
+  <section class="card" id="createAnn" style="display:none;">
+    <h3>Create announcement (admin)</h3>
+    <form id="annForm">
+      <label>Title<input id="title" required></label>
+      <label>Content<textarea id="content" required></textarea></label>
+      <button type="submit">Post</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <ul id="annList"></ul>
+  </section>
+{% endblock %}
