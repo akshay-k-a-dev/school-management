@@ -16,7 +16,7 @@ Endpoints (key)
 - GET `/api/events/registrations/me` — returns `{ event_ids: [...] }` for the current user
 - POST `/api/events/{event_id}/register` — register current user (auth required; capacity enforced)
 - POST `/api/events/{event_id}/unregister` — cancel registration
-- GET `/api/events/{event_id}/participants` — **admin only** — list participant IDs
+- GET `/api/events/{event_id}/participants` — **admin only** — list participant user details (id, name, email)
 
 Notes / behaviour
 - Registration capacity is enforced in `services/event_service.py`.

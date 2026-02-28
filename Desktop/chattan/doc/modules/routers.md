@@ -15,6 +15,7 @@ API router prefixes and purpose
 Pages (templates)
 - `/` → `index.html` (home summary)
 - `/login`, `/signup` → authentication pages
+- `/profile` → profile editing/view page (must be logged in)
 - `/events`, `/complaints`, `/bookings`, `/announcements` → feature pages
 - `/admin/dashboard` → admin UI
 

@@ -240,9 +240,25 @@ async function loadEvents() {
     const res = await apiFetch('/events/');
     const ul = document.getElementById('eventsList');
     ul.innerHTML = '';
+    // pick up current user once for role-based buttons
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
     res.forEach(e => {
       const li = document.createElement('li');
       li.innerHTML = `<strong>${e.title}</strong> — <em>${new Date(e.date).toLocaleString()}</em> <div>${e.venue} | Capacity: ${e.capacity}</div><div>${e.description || ''}</div>`;
+      // for admins show a participants button
+      if (user && user.role === 'admin') {
+        const pbtn = document.createElement('button');
+        pbtn.textContent = 'Participants';
+        pbtn.className = 'btn btn-ghost';
+        pbtn.onclick = async () => {
+          try {
+            const res2 = await apiFetch(`/events/${e.id}/participants`);
+            const names = res2.participants.map(p => p.name + ' <' + p.email + '>');
+            alert(`Registered users:\n${names.join('\n')}`);
+          } catch (err) { showToast(err.detail || 'Failed to load participants', 'error'); }
+        };
+        li.appendChild(pbtn);
+      }
       const btn = document.createElement('button');
       // mark button disabled if already registered
       if (registeredSet.has(e.id)) {
@@ -298,6 +314,10 @@ async function initBookingsPage() {
   }
 
   loadBookings();
+  // refresh student's own bookings periodically so approvals show up in their view
+  if (user && user.role === 'student') {
+    setInterval(loadBookings, 15000); // every 15 seconds
+  }
 
   // admin: show all bookings
   if (user && user.role === 'admin') {
@@ -360,6 +380,22 @@ async function loadAnnouncements() {
     res.forEach(a => {
       const li = document.createElement('li');
       li.innerHTML = `<strong>${a.title}</strong> <div>${a.content}</div><div><small>${new Date(a.created_at).toLocaleString()}</small></div>`;
+      // delete button for admins
+      const user = JSON.parse(localStorage.getItem('user') || 'null');
+      if (user && user.role === 'admin') {
+        const del = document.createElement('button');
+        del.textContent = 'Delete';
+        del.className = 'btn btn-danger';
+        del.addEventListener('click', async () => {
+          if (!confirm('Remove this announcement?')) return;
+          try {
+            await apiFetch(`/announcements/${a.id}`, { method: 'DELETE' });
+            showToast('Deleted', 'success');
+            loadAnnouncements();
+          } catch (err) { showToast(err.detail || 'Delete failed', 'error'); }
+        });
+        li.appendChild(del);
+      }
       ul.appendChild(li);
     });
   } catch (err) { console.error(err); }

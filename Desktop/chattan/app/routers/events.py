@@ -53,5 +53,6 @@ def unregister(event_id: int, db: Session = Depends(get_db), user = Depends(get_
 def participants(event_id: int, db: Session = Depends(get_db), user = Depends(get_current_user)):
     if user.role != 'admin':
         raise HTTPException(status_code=403, detail="Admin only")
-    regs = services.event_service.list_event_participants(db, event_id)
-    return {"participants": [r.user_id for r in regs]}
+    users = services.event_service.list_event_participants(db, event_id)
+    # return minimal user info
+    return {"participants": [ {"id": u.id, "name": u.name, "email": u.email} for u in users ]}

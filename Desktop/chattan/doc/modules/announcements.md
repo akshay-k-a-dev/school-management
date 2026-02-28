@@ -11,6 +11,7 @@ Responsibilities
 Endpoints
 - POST `/api/announcements/` — **admin only** — create announcement (form: `title`, `content`, optional `attachment`)
 - GET `/api/announcements/` — list announcements for display
+- DELETE `/api/announcements/{id}` — **admin only** — remove an announcement
 
 Notes
 - Announcements are simple content objects; attachments are stored as text references (no complex storage flow in this version).

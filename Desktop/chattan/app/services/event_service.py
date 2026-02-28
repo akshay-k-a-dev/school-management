@@ -54,4 +54,5 @@ def unregister_user_from_event(db: Session, event_id: int, user_id: int):
 
 
 def list_event_participants(db: Session, event_id: int):
-    return db.query(models.EventRegistration).filter(models.EventRegistration.event_id == event_id).all()
+    # return list of User objects who registered for the given event
+    return db.query(models.User).join(models.EventRegistration, models.User.id == models.EventRegistration.user_id).filter(models.EventRegistration.event_id == event_id).all()

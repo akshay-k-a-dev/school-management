@@ -60,3 +60,9 @@ def announcements_page(request: Request):
 @router.get("/admin/dashboard")
 def dashboard_page(request: Request):
     return templates.TemplateResponse("dashboard.html", {"request": request})
+
+# profile page is rendered for everyone; frontend JS enforces authentication
+@router.get("/profile")
+def profile_page(request: Request):
+    # serve the profile editing page; client-side script will prompt login if necessary
+    return templates.TemplateResponse("profile.html", {"request": request})

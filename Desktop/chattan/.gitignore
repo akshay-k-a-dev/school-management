@@ -1,2 +1,12 @@
 source /home/akshayka/Desktop/chattan/.venv/bin/activate
 .venv
+
+# bytecode
+__pycache__/
+*.pyc
+
+# database file
+chattan.db
+
+# uploads directory
+app/static/uploads/

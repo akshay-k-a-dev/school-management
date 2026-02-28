@@ -5,6 +5,7 @@ from datetime import datetime
 
 from app.database import get_db
 from app import services, schemas, models
+from app.schemas.booking import BookingStatusUpdate
 from app.routers.auth import get_current_user
 
 router = APIRouter(prefix="/api/bookings", tags=["bookings"])
@@ -34,11 +35,14 @@ def all_bookings(db: Session = Depends(get_db), user = Depends(get_current_user)
     return services.booking_service.list_all_bookings(db)
 
 
+from fastapi import Body
+
 @router.put("/{booking_id}/status")
-def change_status(booking_id: int, status: str, db: Session = Depends(get_db), user = Depends(get_current_user)):
+def change_status(booking_id: int, payload: BookingStatusUpdate, db: Session = Depends(get_db), user = Depends(get_current_user)):
+    # payload carries the new status in the JSON body
     if user.role != 'admin':
         raise HTTPException(status_code=403, detail="Admin only")
-    b = services.booking_service.update_booking_status(db, booking_id, status)
+    b = services.booking_service.update_booking_status(db, booking_id, payload.status)
     if not b:
         raise HTTPException(status_code=404, detail="Booking not found")
     return {"booking": schemas.booking.BookingOut.from_orm(b)}

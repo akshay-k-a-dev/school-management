@@ -14,12 +14,18 @@
 
   <section class="card">
     <h3>Your bookings</h3>
-    <ul id="bookingsList"></ul>
+    <h4>Active</h4>
+    <ul id="bookingsActive"></ul>
+    <h4>Approved / Rejected</h4>
+    <ul id="bookingsPast"></ul>
   </section>
 
   <!-- admin-only: all bookings -->
   <section class="card" id="allBookingsSection" style="display:none;">
     <h3>All bookings (admin)</h3>
-    <ul id="allBookingsList"></ul>
+    <h4>Pending</h4>
+    <ul id="allBookingsPending"></ul>
+    <h4>Processed</h4>
+    <ul id="allBookingsProcessed"></ul>
   </section>
 {% endblock %}

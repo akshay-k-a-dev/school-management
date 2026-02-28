@@ -14,3 +14,12 @@ def create_announcement(db: Session, title: str, content: str, created_by: int, 
 
 def list_announcements(db: Session) -> List[models.Announcement]:
     return db.query(models.Announcement).order_by(models.Announcement.created_at.desc()).all()
+
+
+def delete_announcement(db: Session, ann_id: int) -> bool:
+    ann = db.query(models.Announcement).filter(models.Announcement.id == ann_id).first()
+    if not ann:
+        return False
+    db.delete(ann)
+    db.commit()
+    return True
